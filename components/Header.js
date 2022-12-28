@@ -10,6 +10,8 @@ const Header = () => {
   return (
     <div className="bg-primary">
       <Navbar className="container !bg-inherit">
+        <Navbar.Toggle />
+
         <Navbar.Brand href="https://flowbite.com/">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
@@ -20,15 +22,52 @@ const Header = () => {
             TODOser
           </span>
         </Navbar.Brand>
-        <Navbar.Toggle />
+
+        <div className="md:hidden">
+          <Dropdown placement="bottom-right">
+            <Dropdown.Trigger>
+              <User src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
+            </Dropdown.Trigger>
+            <Dropdown.Menu
+              aria-label="User menu actions"
+              color="warning"
+              onAction={(actionKey) => console.log({ actionKey })}
+            >
+              <Dropdown.Item key="profile" css={{ height: "$18" }}>
+                <Text b color="inherit" css={{ d: "flex" }}>
+                  Signed in as
+                </Text>
+                <Text b color="inherit" css={{ d: "flex" }}>
+                  zoey@example.com
+                </Text>
+              </Dropdown.Item>
+              <Dropdown.Item key="settings" withDivider>
+                My Settings
+              </Dropdown.Item>
+              <Dropdown.Item key="team_settings">Team Settings</Dropdown.Item>
+              <Dropdown.Item key="analytics" withDivider>
+                Analytics
+              </Dropdown.Item>
+              <Dropdown.Item key="system">System</Dropdown.Item>
+              <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
+              <Dropdown.Item key="help_and_feedback" withDivider>
+                Help & Feedback
+              </Dropdown.Item>
+              <Dropdown.Item key="logout" withDivider color="error">
+                Log Out
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+
         <Navbar.Collapse>
-          <li>
+          <li className="mb-2 md:mb-0">
             <Link className="flex items-center text-inactiveText" href={"/"}>
               <BiPlus className="text-2xl" />
               Add Task
             </Link>
           </li>
-          <li>
+          <li className="mb-2 md:mb-0">
             <Link
               className="flex items-center text-inactiveText"
               href={"/my_task"}
@@ -48,7 +87,7 @@ const Header = () => {
           </li>
         </Navbar.Collapse>
 
-        <div>
+        <div className="hidden md:block">
           <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
               <User
