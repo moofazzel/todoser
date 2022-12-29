@@ -4,8 +4,10 @@ import { Inter } from "@next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 import { BiPlus } from "react-icons/bi";
+import { initFirebase } from "../firebase/firebase.config";
 
 export default function Home() {
+  // const app = initFirebase();
   return (
     <>
       <Head>

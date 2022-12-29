@@ -5,8 +5,20 @@ import Link from "next/link";
 import { BiPlus } from "react-icons/bi";
 import { TbListDetails } from "react-icons/tb";
 import { MdTaskAlt } from "react-icons/md";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .then((error) => {
+        // console.error(error);
+      });
+  };
+
   return (
     <div className="bg-primary">
       <Navbar className="container !bg-inherit">
@@ -26,7 +38,13 @@ const Header = () => {
         <div className="md:hidden">
           <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
-              <User src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
+              {user?.uid ? (
+                <User src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
+              ) : (
+                <>
+                  <Link href="/login">Login</Link>
+                </>
+              )}
             </Dropdown.Trigger>
             <Dropdown.Menu
               aria-label="User menu actions"
@@ -38,23 +56,16 @@ const Header = () => {
                   Signed in as
                 </Text>
                 <Text b color="inherit" css={{ d: "flex" }}>
-                  zoey@example.com
+                  {user?.displayName}
                 </Text>
               </Dropdown.Item>
               <Dropdown.Item key="settings" withDivider>
                 My Settings
               </Dropdown.Item>
-              <Dropdown.Item key="team_settings">Team Settings</Dropdown.Item>
-              <Dropdown.Item key="analytics" withDivider>
-                Analytics
-              </Dropdown.Item>
-              <Dropdown.Item key="system">System</Dropdown.Item>
-              <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
-              <Dropdown.Item key="help_and_feedback" withDivider>
-                Help & Feedback
-              </Dropdown.Item>
               <Dropdown.Item key="logout" withDivider color="error">
-                Log Out
+                <Link href="#" onClick={handleLogOut}>
+                  Log Out
+                </Link>
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -90,10 +101,13 @@ const Header = () => {
         <div className="hidden md:block">
           <Dropdown placement="bottom-right">
             <Dropdown.Trigger>
-              <User
-                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                name="Ariana Wattson"
-              />
+              {user?.uid ? (
+                <User src={user?.photoURL} name={user?.displayName} />
+              ) : (
+                <>
+                  <Link href="/login">Login</Link>
+                </>
+              )}
             </Dropdown.Trigger>
             <Dropdown.Menu
               aria-label="User menu actions"
@@ -105,23 +119,16 @@ const Header = () => {
                   Signed in as
                 </Text>
                 <Text b color="inherit" css={{ d: "flex" }}>
-                  zoey@example.com
+                  {user?.displayName}
                 </Text>
               </Dropdown.Item>
               <Dropdown.Item key="settings" withDivider>
                 My Settings
               </Dropdown.Item>
-              <Dropdown.Item key="team_settings">Team Settings</Dropdown.Item>
-              <Dropdown.Item key="analytics" withDivider>
-                Analytics
-              </Dropdown.Item>
-              <Dropdown.Item key="system">System</Dropdown.Item>
-              <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
-              <Dropdown.Item key="help_and_feedback" withDivider>
-                Help & Feedback
-              </Dropdown.Item>
               <Dropdown.Item key="logout" withDivider color="error">
-                Log Out
+                <Link href="#" onClick={handleLogOut}>
+                  Log Out
+                </Link>
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

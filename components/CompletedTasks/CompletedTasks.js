@@ -3,7 +3,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { MdRemoveDone } from "react-icons/md";
 
 import { Dropdown, Modal, Button, Text, Textarea } from "@nextui-org/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 const CompletedTasks = () => {
   const [visible, setVisible] = useState(false);
