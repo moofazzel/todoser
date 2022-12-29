@@ -3,9 +3,24 @@ import google from "../public/icons/google.svg";
 import logo from "../public/logo.png";
 import { AuthContext } from "../Context/AuthProvider";
 import Link from "next/link";
+import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
-  const { handleRegister, UpdateNamePhotoURL } = useContext(AuthContext);
+  const { handleRegister, UpdateNamePhotoURL, googleSignIn } =
+    useContext(AuthContext);
+
+  const handleGoogleLogin = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        // if (user) {
+        //   navigate(from, { replace: true });
+        // }
+      })
+      .then((err) => {
+        console.error(err);
+      });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -165,11 +180,22 @@ const Register = () => {
                 </div>
                 <div className="pb-5">
                   <button
+                    disabledd
                     type="submit"
-                    className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-primary rounded-full shadow-xl hover:bg-violet-800 focus:outline-none focus:ring-blue-200 focus:ring-4"
+                    className=" w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-primary rounded-full shadow-xl hover:bg-violet-800 focus:outline-none focus:ring-blue-200 focus:ring-4 mb-4 disabled:bg-gray-500"
                   >
                     Register
                   </button>
+                  <Link
+                    href="#"
+                    onClick={handleGoogleLogin}
+                    className="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 group hover:bg-[#237539]  focus:outline-none  rounded-full"
+                  >
+                    <button className="flex items-center text-sm font-medium text-[#319f4f] group-hover:text-white">
+                      <FcGoogle className="text-xl mr-1" />
+                      Google
+                    </button>
+                  </Link>
                 </div>
                 {/* <div className="flex flex-col space-y-5">
                   <span className="flex items-center justify-center space-x-2">

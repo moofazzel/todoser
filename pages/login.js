@@ -3,6 +3,8 @@ import google from "../public/icons/google.svg";
 import logo from "../public/logo.png";
 import { AuthContext } from "../Context/AuthProvider";
 import Link from "next/link";
+import { FcGoogle } from "react-icons/fc";
+import { FiLogIn } from "react-icons/fi";
 
 const Login = () => {
   const { googleSignIn, loginWithEmailPassword } = useContext(AuthContext);
@@ -135,9 +137,10 @@ const Login = () => {
               <div>
                 <button
                   type="submit"
-                  className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-primary rounded-full shadow-xl hover:bg-violet-800 focus:outline-none focus:ring-blue-200 focus:ring-4"
+                  className="w-full flex items-center justify-center px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-primary rounded-full shadow-xl hover:bg-violet-800 focus:outline-none focus:ring-blue-200 focus:ring-4 group"
                 >
                   Log in
+                  <FiLogIn className="text-xl group-hover:ml-[6px] transition-all ease-in-out duration-500" />
                 </button>
               </div>
               <div className="flex flex-col space-y-5">
@@ -154,10 +157,8 @@ const Login = () => {
                     onClick={handleGoogleLogin}
                     className="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 group hover:bg-[#237539]  focus:outline-none  rounded-full"
                   >
-                    <span>
-                      <img className="w-5" src={google} alt="" />
-                    </span>
-                    <button className="text-sm font-medium text-[#319f4f] group-hover:text-white">
+                    <button className="flex items-center text-sm font-medium text-[#319f4f] group-hover:text-white">
+                      <FcGoogle className="text-xl mr-1" />
                       Google
                     </button>
                   </Link>
